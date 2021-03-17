@@ -10,12 +10,18 @@ export default function Form() {
     const [city, setcity] = useState('');
     const [state, setstate] = useState('');
     const [zip, setzip] = useState('');
+    /// for classes..
     const [clasfname, setclasfname] = useState('');
     const [claslname, setclaslname] = useState('');
     const [clascity, setclascity] = useState('');
     const [classtate, setclasstate] = useState('');
     const [claszip, setclaszip] = useState('');
-    const [claschk, setclaschk] = useState(false);
+    /// for errors..
+    const [fnameErr, setfnameErr] = useState('');
+    const [lnameErr,setlnameErr] = useState('');
+    const [cityErr, setcityErr] = useState('');
+    const [stateErr, setstateErr] = useState('');
+    const [zipErr, setzipErr] = useState('');
 
 
     const dispatch = useDispatch();
@@ -35,71 +41,72 @@ export default function Form() {
    const handleSubmit=()=>{
       
     var err = false;
-
-    if(!validateFields(lname)){
-     
-      setclaslname(errorclass = 'errorclass')
-        err = true
-        setclaschk(true)
-  
-     }else{
-      setclaslname(errorclass = 'fixclass')
-      setclaschk(false)
-     }
+   
 
     if(!validateFields(fname)){
        
       setclasfname(errorclass = 'errorclass')
         err = true
-        setclaschk(true)
+        setfnameErr(true)
 
 
     }else{
      
       setclasfname(errorclass = 'fixclass')
-      setclaschk(false)
+      setfnameErr(false)
 
     }
 
+    if(!validateFields(lname)){
+     
+      setclaslname(errorclass = 'errorclass')
+        err = true
+        setlnameErr(true)
+  
+     }else{
+      setclaslname(errorclass = 'fixclass')
+      setlnameErr(false)
+     }
+
     if(!validateFields(city)){
        
-      setclasfname(errorclass = 'errorclass')
+      setclascity(errorclass = 'errorclass')
         err = true
-        setclaschk(true)
+        setcityErr(true)
 
 
     }else{
      
-      setclasfname(errorclass = 'fixclass')
-      setclaschk(false)
+      setclascity(errorclass = 'fixclass')
+      setcityErr(false)
 
     }
 
     if(!validateFields(state)){
        
-      setclasfname(errorclass = 'errorclass')
+      setclasstate(errorclass = 'errorclass')
         err = true
-        setclaschk(true)
+        setstateErr(true)
 
 
     }else{
      
-      setclasfname(errorclass = 'fixclass')
-      setclaschk(false)
+      setclasstate(errorclass = 'fixclass')
+      setstateErr(false)
 
     }
 
     if(!validateFields(zip)){
        
-      setclasfname(errorclass = 'errorclass')
+      setclaszip(errorclass = 'errorclass')
         err = true
-        setclaschk(true)
+        setzipErr(true)
 
 
     }else{
      
-      setclasfname(errorclass = 'fixclass')
-      setclaschk(false)
+      setclaszip(errorclass = 'fixclass')
+      setzipErr(false)
 
     }
             var body={
@@ -126,7 +133,7 @@ export default function Form() {
       <input type="text"  id="validationCustom01" style={{width:'70%'}}  required  className={clasfname}
       onChange={(e)=>setfname(e.target.value)} placeholder="First Name"
       />
-      {claschk?(
+      {fnameErr?(
      <p style={{color:'red'}}>Error</p>
        
     ):<></>}
@@ -136,7 +143,7 @@ export default function Form() {
       <input type="text" id="validationCustom02" style={{width:'70%'}} required  className={claslname}
       onChange={(e)=>setlname(e.target.value)} placeholder="Last Name"
       />
-       {claschk?(
+       {lnameErr?(
      <p style={{color:'red'}}>Error</p>
        
     ):<></>}
@@ -146,33 +153,33 @@ export default function Form() {
   <div class="form-row">
     <div class="col-md-6 mb-3">
       {/* <label for="validationCustom03">City</label> */}
-      <input type="text" style={{width:'70%'}} id="validationCustom03" required
+      <input type="text" style={{width:'70%'}} id="validationCustom03" required className={clascity}
       onChange={(e)=>setcity(e.target.value)} placeholder="City"
       />
-     {claschk?(
+     {cityErr?(
      <p style={{color:'red'}}>Error</p>
        
     ):<></>}
     </div>
     <div class="col-md-3 mb-3">
       {/* <label for="validationCustom04">State</label> */}
-      <input type="text" style={{width:'70%'}} id="validationCustom03" required
+      <input type="text" style={{width:'70%'}} id="validationCustom03" required className={classtate}
             onChange={(e)=>setstate(e.target.value)} placeholder="State"
 
       />
 
-{claschk?(
+{stateErr?(
      <p style={{color:'red'}}>Error</p>
        
     ):<></>}
     </div>
     <div class="col-md-3 mb-3">
       {/* <label for="validationCustom05">Zip</label> */}
-      <input type="text" style={{width:'70%'}} id="validationCustom05" required
+      <input type="text" style={{width:'70%'}} id="validationCustom05" required className={claszip}
             onChange={(e)=>setzip(e.target.value)} placeholder="Zip"
 
       />
-       {claschk?(
+       {zipErr?(
      <p style={{color:'red'}}>Error</p>
        
     ):<></>}

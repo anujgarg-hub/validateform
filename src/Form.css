@@ -1,0 +1,18 @@
+.mycontainer{
+    width: 50%;
+    margin: 5% 40%;
+    font-size: 32px;
+}
+
+.errorclass{
+    
+   
+    border-color: red;
+
+}
+
+.fixclass{
+   
+    border-color: greenyellow;
+    
+}

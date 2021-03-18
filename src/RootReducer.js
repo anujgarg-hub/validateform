@@ -5,7 +5,7 @@ var initialState={
 
 
 export default function RootReducer(state=initialState , action) {
-    switch (action.type) {
+    switch (action.type) { 
 
         case 'Add_detail':
             state.cart[action.payload[0]]=action.payload[1] 

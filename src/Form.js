@@ -2,6 +2,8 @@ import React,{useState,useEffect} from 'react';
 import './Form.css';
 import {useDispatch,useSelector} from 'react-redux';
 import shortid from 'shortid';
+import Badge from '@material-ui/core/Badge';
+import AddAlertIcon from '@material-ui/icons/AddAlert';
 
 export default function Form() {
 
@@ -35,6 +37,19 @@ export default function Form() {
             return true
         }
     } 
+
+
+    /// fetch data from redux...
+
+    var cart = useSelector(state=>state.cart);
+    var length = Object.keys(cart).length ;
+    // console.log('from redux',cart);
+    var cartItems  = Object.values(cart);
+
+    // var count = useSelector(state=>state.count)
+    // var countlength  = Object.values(count).length
+    
+
 
     var errorclass ='';
 
@@ -121,12 +136,17 @@ export default function Form() {
             dispatch({type:'Add_detail',payload:[body.id ,body]})
             console.log('body dispatched',body)
             }
-
+            // console.log('conunt length',countlength)
         }    
 
     return (
         <div className="container">
-            <center><h1>Form</h1></center>
+          <div style={{display:'flex',alignItems:'center',justifyContent:"space-between"}}>
+            <h1 style={{marginLeft:'500px'}}>Form</h1> 
+            <Badge badgeContent={length} color="primary">
+               <AddAlertIcon/>
+           </Badge> 
+         </div> 
   <div class="form-row">
     <div class="col-md-6 mb-3">
       {/* <label for="validationCustom01">First name</label> */}
